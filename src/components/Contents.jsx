@@ -1,7 +1,10 @@
-import DishesCards from "./DishesCards"
+import DishesCards from "./contents/DishesCards"
 import Footer from "./Footer"
+import { useDispatch, useSelector } from "react-redux"
 
 const Contents = () => {
+    const activeUI = useSelector((state) => state.activeUI)
+    console.log(activeUI)
 
     return (
         <div className="hide-scrollbar h-[50vh] flex flex-col justify-between overflow-scroll">
