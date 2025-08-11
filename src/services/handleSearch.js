@@ -1,15 +1,9 @@
-const SPOON_KEY = "763377dd60e948598b65714f3d32cdd9";
-const link =
-	" https://api.spoonacular.com/recipes/716429/information?apiKey=YOUR-API-KEY&includeNutrition=true.";
-const INGR_EX = "https://img.spoonacular.com/ingredients_100x100/apple.jpg";
+import { setQueryResult } from "../slice/querySlice";
 
-// https://img.spoonacular.com/recipes/{ID}-{SIZE}.{TYPE}, where {SIZE} is one of the following:
+const fetchDishes = (searchQuery) => async (dispatch) => {
 
-// https://api.spoonacular.com/recipes/adobong&manok/?apiKey=               .
-
-const fetchDishes = async (searchQuery) => {
 	try {
-		const res = await fetch(" http://localhost:3000/search", {
+		const res = await fetch("http://localhost:3000/search", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -17,15 +11,38 @@ const fetchDishes = async (searchQuery) => {
 			body: JSON.stringify({ query: searchQuery }),
 		});
 		const data = await res.json();
+		dispatch(setQueryResult(data))
 
-		console.log(typeof data);
-		console.log(data);
-
-		return data;
 	} catch (err) {
 		console.error("Error fetching dishes:", err);
-		return [];
+		dispatch(setQueryResult([]));
 	}
 };
 
 export default fetchDishes;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const SPOON_KEY = "763377dd60e948598b65714f3d32cdd9";
+// const link =
+// 	" https://api.spoonacular.com/recipes/716429/information?apiKey=YOUR-API-KEY&includeNutrition=true.";
+// const INGR_EX = "https://img.spoonacular.com/ingredients_100x100/apple.jpg";
+
+// https://img.spoonacular.com/recipes/{ID}-{SIZE}.{TYPE}, where {SIZE} is one of the following:
+
+// https://api.spoonacular.com/recipes/adobong&manok/?apiKey=.

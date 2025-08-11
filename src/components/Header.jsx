@@ -2,17 +2,18 @@ import { useState } from "react"
 import logo from "../assets/favicon.png"
 import inputIcon from "../assets/input-icon.png"
 import fetchDishes from "../services/handleSearch"
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import { setActiveUI } from "../slice/activeUISlice" 
 
 const Header = () => {
     const [search, setSearch] = useState("")
-    const currentActiveUI = useSelector((state) => state.activeUI)
     const dispatch = useDispatch()
 
-    console.log("current active: ", currentActiveUI)
+    const handleSearch = () => {
+        dispatch(fetchDishes(search));
+        setSearch("")
+    };
 
-   
     return (
         <header>
             <div className="flex gap-[.5rem] items-center">
@@ -25,10 +26,12 @@ const Header = () => {
                     <input type="text" name="search" id="search" placeholder="Search dishes.." className="flex-1 outline-hidden"
                             value={search} onChange={(e) => setSearch(e.target.value)} 
                             onKeyDown={(e) => {
-                                if(e.key === "Enter") fetchDishes(search)
+                                if(e.key === "Enter") {
+                                    handleSearch
+                                }
                             }}/>
 
-                    <i className="fa-solid fa-magnifying-glass "></i>
+                    <i className="fa-solid fa-magnifying-glass cursor-pointer" onClick={handleSearch}></i>
                 </div>
                 <ul className="flex gap-[.5rem] mt-[20px]">
                     <li className="text-[0.7rem] border  border-gray-600  py-[0.2rem] px-3.5 rounded-[10px]" 
