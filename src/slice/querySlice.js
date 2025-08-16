@@ -1,13 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const querySlice = createSlice({
-    name: "queryResult",
-    initialState: [],
+    name: "query",
+    initialState: {
+        queryResult: [],
+        loading: false
+    },
     reducers: {
-        setQueryResult: (state, action) => { return action.payload },
-        removeQueryResultt: (state, action) => { return [] } ,
+        setQueryResult: (state, action) => { 
+            state.queryResult = action.payload
+            state.loading = false
+        },
+        removeQueryResultt: (state, action) => { 
+            state.queryResult = [] 
+        },
+        setLoading: (state, action) => {
+            state.loading = action.payload
+        }
     }
 })
 
-export const { setQueryResult, removeQueryResult } = querySlice.actions;
+export const { setQueryResult, removeQueryResult, setLoading } = querySlice.actions;
 export default querySlice.reducer;

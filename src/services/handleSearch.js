@@ -1,8 +1,10 @@
-import { setQueryResult } from "../slice/querySlice";
+import { setQueryResult, setLoading } from "../slice/querySlice";
 
 const fetchDishes = (searchQuery) => async (dispatch) => {
 
 	try {
+		dispatch(setLoading(true))
+
 		const res = await fetch("http://localhost:3000/search", {
 			method: "POST",
 			headers: {
@@ -11,6 +13,9 @@ const fetchDishes = (searchQuery) => async (dispatch) => {
 			body: JSON.stringify({ query: searchQuery }),
 		});
 		const data = await res.json();
+
+		console.log(data)
+
 		dispatch(setQueryResult(data))
 
 	} catch (err) {
