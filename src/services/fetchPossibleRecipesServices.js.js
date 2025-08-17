@@ -1,4 +1,4 @@
-import { setPossibleRecipes } from "../slice/possibleRecipeSlice";
+import { setPossibleRecipes, setLoading, setError } from "../slice/possibleRecipeSlice";
 
 let lastIngredientsHash = null;
 const fetchPossibleRecipes = (ingredients) => async (dispatch) => {
@@ -12,6 +12,8 @@ const fetchPossibleRecipes = (ingredients) => async (dispatch) => {
         }
 
         lastIngredientsHash = ingredientsHash;
+
+        dispatch(setLoading(true))
 
         const res = await fetch("http://localhost:3000/ingredients", {
             method: "POST",
@@ -27,6 +29,7 @@ const fetchPossibleRecipes = (ingredients) => async (dispatch) => {
         dispatch(setPossibleRecipes(data));
     } catch (err) {
         console.error("Error fetching possible recipes:", err);
+        dispatch(setError(err.message || "Something went wrong"));
     }
 };
 

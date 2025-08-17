@@ -1,6 +1,7 @@
 import Home from './pages/Home'
 import { useSelector } from 'react-redux'
 import IngredientsUI from './pages/IngredientsUI'
+import ActiveDishesUI from './pages/ActiveDIshesUI'
 
 function App() {
   const activeUI = useSelector((state) => state.activeUI)
@@ -12,6 +13,9 @@ function App() {
       break
     case "ingredients":
       content = <IngredientsUI />
+      break
+    case "active-dishes":
+      content = <ActiveDishesUI />
   }
 
   return (

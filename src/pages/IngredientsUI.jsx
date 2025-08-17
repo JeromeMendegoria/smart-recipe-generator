@@ -24,13 +24,13 @@ const IngredientsUI = () => {
                         setActive("what_can_cook")
                     }}>What I can cook</button>
                     <button className="border px-2.5 py-1 rounded-[10px]"
-                    onClick={() => setActive("my_ingredients")}>My Ingredients</button>
+                    onClick={() => setActive("my_ingredients")}>My Ingredients</button>                 
                 </div>
             </nav>
-            <div className=" overflow-y-scroll flex-1 hide-scrollbar">
+            <div className=" overflow-y-scroll flex-1 hide-scrollbar border">
                 {active == "what_can_cook" ?  <WhatCanCook /> : <AddIngredientsUI />}
             </div>
-            <Footer />
+            
         </section>
     )
 }

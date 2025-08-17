@@ -35,7 +35,7 @@ const Header = () => {
                 </div>
                 <ul className="flex gap-[.5rem] mt-[20px]">
                     <li className="text-[0.7rem] border  border-gray-600  py-[0.2rem] px-3.5 rounded-[10px]" 
-                        onClick={() => dispatch(setActiveUI("recent"))}>Recent</li>
+                        onClick={() => dispatch(setActiveUI("recent"))}>Clear</li>
                     <li className="text-[0.7rem] border  border-gray-600  py-[0.2rem] px-3.5 rounded-[10px]" 
                         onClick={() => dispatch(setActiveUI("saved"))}>Saved</li>
                     <li className="text-[0.7rem] border  border-gray-600  py-[0.2rem] px-3.5 rounded-[10px]"
