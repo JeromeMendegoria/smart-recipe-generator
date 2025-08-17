@@ -1,25 +1,36 @@
 import { useEffect, useState } from "react"
+import { fetchDishByName } from "../../services/dishService"
 import { setActiveUI } from "../../slice/activeUISlice" 
+import { setActiveDish } from "../../slice/activeDishSlice"
 import { useDispatch, useSelector } from "react-redux"
 
 const DishesCards = ({ data }) => {
   const [show, setShow] = useState(false)
+  const dispatch = useDispatch()
 
-  // Re-trigger animation whenever data changes
   useEffect(() => {
     setShow(false)
-    const id = setTimeout(() => setShow(true), 10) // allow layout to paint
+    const id = setTimeout(() => setShow(true), 10)
     return () => clearTimeout(id)
   }, [data])
 
-  return (
+  const handleDishClick= async (dishName) => {
+    try {
+      const dishData = await fetchDishByName(dishName)
 
-    // fetch to my backend
-    // set active UI to active-dishes
+      dispatch(setActiveDish(dishData))
+      dispatch(setActiveUI("activeDishesUI"))
+    } catch (err) {
+      console.log("error fetching dish", err)
+    }
+  }
+
+  return (
     <div className="flex flex-col mt-[20px] gap-[10px] h-screen overflow-y-scroll hide-scrollbar">
       {data?.map((items, index) => (
         <div          
           key={index}
+          onClick={() => handleDishClick(items.title)}
           className={`bg-[#f7f1e3] min-h-[100px] gap-[.5rem] py-[0.3rem] px-[.5rem] rounded-[10px] shadow-md
                       transition-all duration-500 ease-out will-change-transform
                       ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}

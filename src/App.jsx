@@ -14,7 +14,7 @@ function App() {
     case "ingredients":
       content = <IngredientsUI />
       break
-    case "active-dishes":
+    case "activeDishesUI":
       content = <ActiveDishesUI />
   }
 

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const activeUISlice = createSlice({
     name: "activeUI",
-    initialState: "active-dishes",
+    initialState: "character",
     reducers: {
         setActiveUI: (state, action) => action.payload 
     }

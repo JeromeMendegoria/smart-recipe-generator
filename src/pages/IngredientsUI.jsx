@@ -27,7 +27,7 @@ const IngredientsUI = () => {
                     onClick={() => setActive("my_ingredients")}>My Ingredients</button>                 
                 </div>
             </nav>
-            <div className=" overflow-y-scroll flex-1 hide-scrollbar border">
+            <div className=" overflow-y-scroll flex-1 hide-scrollbar">
                 {active == "what_can_cook" ?  <WhatCanCook /> : <AddIngredientsUI />}
             </div>
             

@@ -21,8 +21,9 @@ const WhatCanCook = () => {
     return (
       <>
         {ingredients.length === 0 ? (
-          <div className="flex justify-center items-center">
+          <div className="flex flex-col justify-center items-center mt-[20%]">
             <img src={emptyIcon} alt="empty icon" className="w-[200px] h-[200px]" />
+            <p className="text-2xl mt-2.5">No Ingridients found</p>
           </div>
         ) : loading ? (
           <LoadingText />
